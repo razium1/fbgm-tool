@@ -32,16 +32,28 @@ with open('PlayerRatings.csv', 'r') as file:
         }
 
 # Function to calculate overall rating for a player
+# Function to calculate overall rating for a player based on position
 def calculate_overall(player):
     total_weighted = 0
-    attributes = ['Spd', 'Str', 'Elu', 'Hnd', 'RtR', 'RBk', 'PBk', 'Tck', 'PRs', 'RnS', 'PCv', 'ThP', 'ThA', 'ThV', 'Pot']
-    weights = {'Spd': 2, 'Str': 2, 'Elu': 1, 'Hnd': 1, 'RtR': 1, 'RBk': 1, 'PBk': 1, 'Tck': 3, 'PRs': 1, 'RnS': 1, 'PCv': 1, 'ThP': 2, 'ThA': 2, 'ThV': 2, 'Pot': 4}
+    pos_weights = {
+        'QB': {'ThP': 3, 'ThA': 3, 'ThV': 3, 'PCv': 2, 'Pot': 4},
+        'RB': {'Spd': 3, 'Str': 3, 'Elu': 3, 'Hnd': 2, 'Pot': 4},
+        'WR': {'Spd': 3, 'RtR': 3, 'Hnd': 3, 'Elu': 2, 'Pot': 4},
+        'TE': {'Spd': 2, 'Str': 3, 'Hnd': 3, 'RtR': 2, 'PBk': 1, 'RBk': 1, 'Pot': 4},
+        'OL': {'Str': 3, 'RBk': 3, 'PBk': 3, 'Pot': 4},
+        'DL': {'Str': 3, 'Tck': 3, 'Elu': 2, 'Pot': 4},
+        'LB': {'Tck': 3, 'Spd': 2, 'Str': 2, 'Elu': 2, 'Pot': 4},
+        'CB': {'Spd': 3, 'RtR': 3, 'Tck': 2, 'Pot': 4},
+        'S': {'Spd': 3, 'Tck': 3, 'PRs': 2, 'Pot': 4},
+        'K': {'ThP': 2, 'KAc': 3, 'KAa': 3, 'Pot': 4},
+        'P': {'KAc': 2, 'KAa': 2, 'KAb': 2, 'Pot': 4}
+    }
     
-    for attribute in attributes:
-        if attribute != 'Pos':
-            total_weighted += int(players[player][attribute]) * weights[attribute]
+    for attribute, weight in pos_weights[players[player]['Pos']].items():
+        total_weighted += int(players[player][attribute]) * weight
     
-    return total_weighted // sum(weights.values())
+    return total_weighted // sum(pos_weights[players[player]['Pos']].values())
+
 
 
 
