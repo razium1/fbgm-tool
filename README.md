@@ -1,4 +1,4 @@
-# fbgm-tool
+# fbgm-draft-tool
 # Football GM Draft Tool
 
 This is a Python program that helps football GMs draft players by grading them based on various attributes. 
