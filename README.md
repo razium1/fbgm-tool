@@ -76,6 +76,8 @@ Click on "Customize Spreadsheet" to select which fields you want to include in t
 Here's a screenshot of the toolbar and the "Customize Spreadsheet" button for reference:
 
 ![alt text](https://github.com/razium1/fbgm-tool/blob/main/Screenshot%20(8).png)
+
+
 The program will display the player data in a table. You can sort the table by clicking on the column headers.
 
 You can search for a specific player by typing their name in the search bar.
